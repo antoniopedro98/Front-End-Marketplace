@@ -1,0 +1,140 @@
+<div  class="parallax-container">
+    <div class="parallax">
+      <img src="{{estabelecimento.banner}}" class="responsive-img"> 
+    </div>
+</div>
+
+<div class="section white">
+    <div class="row container">
+        <img src="{{estabelecimento.logo}}" class="circle responsive-img" style="height: 200px; width: 200px;"> 
+        <h3 style="color:#c0262e;">{{estabelecimento.name}}</h3>
+        <div class="chip" *ngFor="let t of estabelecimento.tags" style="color:#c0262e;">
+            {{t.tag}}
+        </div>
+        <tr>
+            <td><i class="medium material-icons" style="color:#c0262e;">phone</i></td>
+            <td><h4 style="color:#c0262e;">{{estabelecimento.telephone}}</h4></td>
+            <td><h4 style="color:#c0262e;">|</h4></td>
+            <td><h4 style="color:#c0262e;">{{estabelecimento.cell_phone}}</h4></td>
+        </tr>
+        <!-- <h4>Avaliação: {{anuncio.avaliacao}}</h4> -->
+        <!-- <h5>
+            <a class="modal-trigger" href="#modalHorario"><u>Horário de Funcionamento</u></a>
+             | 
+            <a class="modal-trigger" href="#modalPagamento"><u>Formas de Pagamento</u></a>
+        </h5>
+        
+        <div id="modalHorario" class="modal">
+            <div class="modal-content">
+              <h4>Horário de Funcionamento</h4>
+              <p>Os horários de funcionamento deste negócio são:</p>
+              <table class="responsive-table">
+                <thead>
+                  <tr>
+                    <th>Segunda-Feira</th>
+                    <th>Terça-Feira</th>
+                    <th>Quarta-Feira</th>
+                    <th>Quinta-Feira</th>
+                    <th>Sexta-Feira</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{anuncio.abertura[0].seg}}h - {{anuncio.fechamento[0].seg}}h</td>
+                    <td>{{anuncio.abertura[0].ter}}h - {{anuncio.fechamento[0].ter}}h</td>
+                    <td>{{anuncio.abertura[0].qua}}h - {{anuncio.fechamento[0].qua}}h</td>
+                    <td>{{anuncio.abertura[0].qui}}h - {{anuncio.fechamento[0].qui}}h</td>
+                    <td>{{anuncio.abertura[0].sex}}h - {{anuncio.fechamento[0].sex}}h</td>
+                    <td>{{anuncio.abertura[0].sab}}h - {{anuncio.fechamento[0].sab}}h</td>
+                    <td>{{anuncio.abertura[0].dom}}h - {{anuncio.fechamento[0].dom}}h</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <a [routerLink]="['/anuncios/cidades/', cidade, id]" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+            </div>
+          </div>
+        
+        <div id="modalPagamento" class="modal">
+            <div class="modal-content">
+                <h4>Formas de Pagamento</h4>
+                <p>Este negócio aceita como pagamento:</p>
+
+            </div>
+            <div class="modal-footer">
+                <a [routerLink]="['/anuncios/cidades/', cidade, id]" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+            </div>
+        </div> -->
+    </div>
+    <div class="divider" style="width: auto;"></div>
+    <div class="row container">
+        <table class="responsive-table">
+            <tr >
+                <td>
+                    <i class="large material-icons" style="color:#c0262e;">motorcycle</i>
+                </td>
+                <td>
+                    <h5 style="color:#c0262e;">Delivery?</h5>
+                    <div *ngIf="estabelecimento.delivery; else NoDeliver">
+                        <h5 style="color:#c0262e;" >Sim</h5>
+                    </div>
+                    <ng-template #NoDeliver>
+                        <h5 style="color:#c0262e;" >Não</h5>
+                    </ng-template>
+                </td>
+                <td></td>
+                <td>
+                    <i class="large material-icons" style="color:#c0262e;">local_mall</i>
+                </td>
+                <td>
+                    <h5 style="color:#c0262e;">Retirada no Local?</h5>
+                    <div *ngIf="estabelecimento.withdraw; else NoWithDraw">
+                        <h5 style="color:#c0262e;" >Sim</h5>
+                    </div>
+                    <ng-template #NoWithDraw>
+                        <h5 style="color:#c0262e;" >Não</h5>
+                    </ng-template>                
+                </td>
+                <td>
+                    <i class="large material-icons" style="color:#c0262e;">access_time</i>
+                </td>
+                <td>
+                    <h5 style="color:#c0262e;">Tempo Médio</h5>
+                    <h5 style="color:#c0262e;">{{estabelecimento.time}} min</h5>
+                </td>
+            </tr>
+        </table>    
+    </div>
+    <div class="row container">
+        <p>{{estabelecimento.description}}</p>
+    </div>
+    <div class="row container">
+        <!--   -->
+        <div class="col s6 m4 l2" *ngFor="let imagem of imagens">
+            <div class="container-imagens" style="height: 150px;">
+                <img src="{{imagem.img}}" class="responsive-img card materialboxed" >
+            </div>
+        </div>
+    </div>
+    <div class="row container">
+        <div class="column">
+            <h4 style="color:#c0262e;">Boca a Boca</h4>
+            <img src="assets/principais/bocaboca.png" style="height: 400px;">
+        </div>
+        <div class="column">
+            <div [innerHtml]="comentarios"></div>
+        </div>
+        
+    </div>
+    <!-- <div class="row container">
+        <tr>
+            <td><i class="medium material-icons">phone</i></td>
+            <td><h4>{{anuncio.telefone}}</h4></td>
+            <td><h4>|</h4></td>
+            <td><h4>{{anuncio.celular}}</h4></td>
+        </tr>
+    </div> -->
+</div>

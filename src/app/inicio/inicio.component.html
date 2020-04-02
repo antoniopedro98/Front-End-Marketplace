@@ -1,0 +1,81 @@
+<div id= topo></div>
+
+<div class="parallax-container">
+    <a class='dropdown-trigger btn' href='inicio#topo' data-target='dropdown1' style="background-color:#c0262e ;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Escolha sua cidade</a>
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+    <li *ngFor="let cidade of this.cidades">
+        <a [routerLink]="['/anuncios/cidades', cidade.id]" style="text-align: center; color: #c0262e;">{{cidade.name}} ({{cidade.state}})</a>
+    </li>
+    </ul>
+    <div class="parallax" style="opacity:0.5">
+        <img src="assets/principais/capa.jpeg" class="responsive-img" style="height: 500px;">
+    </div>
+</div>
+
+<div class="section white">
+    <div class="row container ">
+        <div class="column">
+            <h3 style="color: #c0262e;">O que é o Marketplace?</h3>
+            <p style="text-align: justify;">
+                A pandemia do Covid-19 tem se alastrado pelo mundo causando muito 
+                mais que prejuízos financeiros e logísticos: inúmeras mortes. Por 
+                ser extremamente contagioso, a recomendação das autoridades de saúde 
+                é praticar o isolamento social, de forma a minimizar a transmissão
+                do vírus.
+            </p>
+            <p style="text-align: justify;">
+                O Departamento de Computação (DCOMP) da Universidade Federal 
+                de São João del-Rei (UFSJ) visando contribuir positivamente para
+                essa situação e minimizar os impactos da doença em nossa sociedade 
+                desenvolveu essa plataforma: o Marketplace.
+            </p>
+            <p style="text-align: justify;">
+                Com o isolamento social sendo praticado, torna-se iminente o 
+                fechamento dos comércios e serviços não essenciais. Mas ainda  
+                há aqueles que continuam em funcionamento, sejam com capacidade 
+                reduzida, sejam feitos em casa (microempreendedores) ou que sejam de
+                extrema urgência. O Marketplace atua para esse nicho econômico para 
+                divulgar e permitir a troca de informações acerca dos produtos e 
+                serviços aqui divulgados.
+            </p>
+            <h3 style="color: #c0262e;">Como cadastrar seu negócio?</h3>
+            <p style="text-align: justify;">
+                Primeiramente, sua cidade deve aparecer no menu de cidades que está 
+                na Página Inicial (se não estiver, <a><u>clique aqui</u></a>). Se ela 
+                ali estiver, quer dizer que já existe um Curador para sua cidade. Isso 
+                significa que existe um responsável por validar as informações do seu
+                negócio, evitando que conteúdos mal intencionados poluam a plataforma. 
+            </p>
+            <p style="text-align: justify;">
+                Enfim, se já existe um Curador para sua cidade, basta 
+                <a><u>clicar aqui</u></a> para que você seja redirecionado para
+                um formulário de cadastro. Este será enviado para análise do Curador,
+                que, dentro de 24 horas, dará um retorno para você dizendo se a sua
+                solicitação foi aprovada, ou não. Em caso positivo, a divulgação do seu
+                negócio já estará em nossa plataforma. Do contrário, possivelmente seu
+                negócio infringiu alguma das regulamentações previstas <a><u>aqui</u></a>.
+            </p>
+        </div>
+        <div class="column">
+            <h3 style="color: #c0262e;">Até quando o Marketplace estará disponível?</h3>
+            <p style="text-align: justify;">
+                O objetivo do Marketplace é minimizar os impactos econômicos que o 
+                combate ao Covid-19 traz, sem visar o lucro, mas o bem comum.
+                Nesse sentido, a plataforma seguirá no ar enquanto o combate a
+                esse vírus continuar e as medidas de isolamento social ainda
+                forem recomendação das autoridades de saúde. Por isso, dê preferência
+                a fontes de informação confiáveis e mantenha-se ligado nas informações
+                compartilhadas pelo 
+                <a target="_blank" href="https://saude.gov.br/"><u>Ministério da Saúde</u></a>.
+            </p>
+            <a class="twitter-timeline" data-width="550" data-height="500" data-theme="dark" href="https://twitter.com/minsaude?ref_src=twsrc%5Etfw">Tweets by minsaude</a> 
+        </div>
+    
+    </div> 
+</div>
+
+
+
+
+    
