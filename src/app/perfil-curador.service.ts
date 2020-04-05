@@ -13,6 +13,6 @@ export class PerfilCuradorService {
   // recupera todos os perfis
   getPerfisCuradores(): Observable<PerfilCurador[]>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<PerfilCurador[]>('http://200.17.66.215/api/profiles/');
+    return this.http.get<PerfilCurador[]>('http://200.17.66.215/back/api/profiles/');
   }
 }

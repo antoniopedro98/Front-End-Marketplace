@@ -13,6 +13,6 @@ export class CuradoresService {
   // recupera todos os curadores
   getCuradores(): Observable<Curadores[]>{
     // retorna os curadores que eu tenho nessa url
-    return this.http.get<Curadores[]>('http://200.17.66.215/api/users/');
+    return this.http.get<Curadores[]>('http://200.17.66.215/back/api/users/');
   }
 }

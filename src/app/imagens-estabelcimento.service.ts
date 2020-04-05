@@ -13,6 +13,6 @@ export class ImagensEstabelcimentoService {
   // recupera todas as imagens de produtos/serviços de um estabelcimento
   getImagens(idBusiness: number): Observable<Imagens[]>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Imagens[]>('http://200.17.66.215/api/images/?business=' + idBusiness);
+    return this.http.get<Imagens[]>('http://200.17.66.215/back/api/images/?business=' + idBusiness);
   }
 }

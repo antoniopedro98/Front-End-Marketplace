@@ -13,6 +13,6 @@ export class EstadosService {
   // recupera todos os estados
   getEstados(): Observable<Estados[]>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Estados[]>('http://200.17.66.215/api/states/');
+    return this.http.get<Estados[]>('http://200.17.66.215/back/api/states/');
   }
 }

@@ -13,5 +13,5 @@ export class TagService {
   // recupera um estabelecimento especifico
   getTags(idEstabelecimento: number): Observable<Tags[]>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Tags[]>('http://200.17.66.215/api/tags/?business=' + idEstabelecimento);
+    return this.http.get<Tags[]>('http://200.17.66.215/back/api/tags/?business=' + idEstabelecimento);
   }}
