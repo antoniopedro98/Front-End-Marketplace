@@ -8,14 +8,14 @@
     <div class="row container">
         <img src="{{estabelecimento.logo}}" class="circle responsive-img" style="height: 200px; width: 200px;"> 
         <h3 style="color:#c0262e;">{{estabelecimento.name}}</h3>
-        <div class="chip" *ngFor="let t of estabelecimento.tags" style="color:#c0262e;">
-            {{t}}
+        <div class="chip" *ngFor="let tag of tags" style="color:#c0262e;">
+            {{tag.name}}
         </div>
         <tr>
             <td><i class="medium material-icons" style="color:#c0262e;">phone</i></td>
-            <td><h5 style="color:#c0262e;">{{estabelecimento.telephone}}</h5></td>
-            <td><h5 style="color:#c0262e;">|</h5></td>
             <td><h5 style="color:#c0262e;">{{estabelecimento.cell_phone}}</h5></td>
+            <td><h5 style="color:#c0262e;">|</h5></td>
+            <td><h5 style="color:#c0262e;">{{estabelecimento.telephone}}</h5></td>
         </tr>
         <!-- <h4>Avaliação: {{anuncio.avaliacao}}</h4> -->
         <!-- <h5>

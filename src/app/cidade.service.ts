@@ -14,14 +14,14 @@ export class CidadeService {
   //se altere na nossa aplicação 
 
   // recupera uma cidade especifica
-  getCidade(idCidade: string): Observable<Cidades>{
+  getCidade(idCidade: number): Observable<Cidades>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Cidades>('http://localhost:8000/cities/' + idCidade + '/');
+    return this.http.get<Cidades>('http://200.17.66.215/api/cities/' + idCidade + "/");
   }
 
   // recupera todas as cidades
   getCidades(): Observable<Cidades[]>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Cidades[]>('http://localhost:8000/cities/');
+    return this.http.get<Cidades[]>('http://200.17.66.215/api/cities/');
   }
 }

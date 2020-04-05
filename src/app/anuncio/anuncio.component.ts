@@ -3,8 +3,9 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import { EstabelecimentoService } from '../estabelecimento.service';
-import { Estabelecimentos } from '../anuncios-cidade/anuncios-cidade.component';
 import { ImagensEstabelcimentoService } from '../imagens-estabelcimento.service';
+import { Estabelecimento } from '../inicio/inicio.component';
+import { TagService } from '../tag.service';
 
 // pro jquery
 declare var $: any;
@@ -24,19 +25,20 @@ export class AnuncioComponent implements OnInit {
   public comentarios: SafeHtml;
 
 
-  public estabelecimento: Estabelecimentos;
+  public estabelecimento: Estabelecimento;
   public imagens: Imagens[] = new Array<Imagens>();
-
+  public tags: Tags[] = new Array<Tags>();
 
   // importo os serviços que fazem requisição no servidor, o route pra recuperar
   // o que vem na url, o DOM pra poder renderizar os comentários do facebook
   constructor(public route: ActivatedRoute, private sanitizer: DomSanitizer,
               private service_business: EstabelecimentoService,
-              private service_images: ImagensEstabelcimentoService) { }
+              private service_images: ImagensEstabelcimentoService,
+              private service_tags: TagService) { }
 
   ngOnInit(): void {
     // crio um novo estabelecimento
-    this.estabelecimento = new Estabelecimentos();
+    this.estabelecimento = new Estabelecimento();
 
     // recupero o id da cidade e o id do estabelecimento que vieram na url
     this.idSubscription = this.route.params.subscribe((params: any) => {
@@ -49,7 +51,13 @@ export class AnuncioComponent implements OnInit {
     // recupera as informações do estabelecimento informado
     this.service_business.getEstabelecimento(this.idEstabelecimento).subscribe(estabelecimento=> {
       this.estabelecimento = estabelecimento;
-      // console.log(this.estabelecimento);
+      console.log(this.estabelecimento);
+    });
+
+    // recupera as tags do estabelecimento informado
+    this.service_tags.getTags(this.idEstabelecimento).subscribe(tags=> {
+      this.tags = tags;
+      console.log(this.tags);
     });
 
     // recupera as fotos do establecimento/produtos/serviços
@@ -84,11 +92,22 @@ export class AnuncioComponent implements OnInit {
 
 // classe pra recuperar as imagens de um estabelecimento
 export class Imagens{
-  id: string;
+  id: number;
   business: string;
   img: string;
 
   constructor(){
     this.img = "";
+  }
+}
+
+// classe para tag de um negocio
+export class Tags{
+  id: number;
+  business: number;
+  name: string;
+
+  constructor(){
+    this.name = "";
   }
 }

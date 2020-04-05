@@ -1,11 +1,9 @@
-<div id= topo></div>
-
 <div class="parallax-container">
-    <a class='dropdown-trigger btn' href='inicio#topo' data-target='dropdown1' style="background-color:#c0262e ;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Escolha sua cidade</a>
+    <a class='dropdown-trigger btn' href='inicio' data-target='dropdown1' style="background-color:#c0262e ;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Escolha sua cidade</a>
     <!-- Dropdown Structure -->
     <ul id='dropdown1' class='dropdown-content'>
     <li *ngFor="let cidade of this.cidades">
-        <a [routerLink]="['/anuncios/cidades', cidade.id]" style="text-align: center; color: #c0262e;">{{cidade.name}} ({{cidade.state}})</a>
+        <a [routerLink]="['/anuncios/cidades', cidade.id]" style="text-align: center; color: #c0262e;">{{cidade.name}} ({{cidade.state_initials}})</a>
     </li>
     </ul>
     <div class="parallax" style="opacity:0.5">
@@ -16,51 +14,92 @@
 <div class="section white">
     <div class="row container ">
         <div class="column">
-            <h3 style="color: #c0262e;">O que é o Marketplace?</h3>
+            <h4 style="color: #c0262e;">O que é o Boca a Boca Virtual?</h4>
             <p style="text-align: justify;">
-                A pandemia do Covid-19 tem se alastrado pelo mundo causando muito 
-                mais que prejuízos financeiros e logísticos: inúmeras mortes. Por 
-                ser extremamente contagioso, a recomendação das autoridades de saúde 
-                é praticar o isolamento social, de forma a minimizar a transmissão
-                do vírus.
+                A pandemia do Covid-19 tem se alastrado pelo mundo causando
+                muito mais que prejuízos financeiros e logísticos, mas 
+                principalmente inúmeras mortes. Por ser extremamente contagioso, 
+                a recomendação das principais e mais respeitadas autoridades 
+                de saúde do mundo é praticar o isolamento social, de forma a 
+                minimizar a transmissão do vírus. 
             </p>
             <p style="text-align: justify;">
-                O Departamento de Computação (DCOMP) da Universidade Federal 
-                de São João del-Rei (UFSJ) visando contribuir positivamente para
-                essa situação e minimizar os impactos da doença em nossa sociedade 
-                desenvolveu essa plataforma: o Marketplace.
+                Com o isolamento social sendo praticado, torna-se necessário
+                o fechamento dos comércios e serviços não-essenciais. 
+                Entretanto, a demanda por serviços e produtos continua. 
+                Além disso, prestadores de serviço autônomos e estabelecimentos 
+                de uma forma geral também precisam continuar trabalhando para que 
+                possam conseguir seu sustento e  também garantir o sustento de 
+                seus empregados.
             </p>
             <p style="text-align: justify;">
-                Com o isolamento social sendo praticado, torna-se iminente o 
-                fechamento dos comércios e serviços não essenciais. Mas ainda  
-                há aqueles que continuam em funcionamento, sejam com capacidade 
-                reduzida, sejam feitos em casa (microempreendedores) ou que sejam de
-                extrema urgência. O Marketplace atua para esse nicho econômico para 
-                divulgar e permitir a troca de informações acerca dos produtos e 
-                serviços aqui divulgados.
+                O Departamento de Ciência da Computação (DCOMP) da Universidade 
+                Federal de São João del-Rei (UFSJ), visando contribuir para que o 
+                isolamento social possa ser praticado de forma consistente, 
+                apresenta o Boca a Boca Virtual, cujo foco principal do é dar 
+                visibilidade aos pequenos empreendimentos de bairro, auxiliando 
+                para que os mesmos possam continuar ofertando seus produtos e 
+                serviços, considerando os aspectos de afastamento social. Nossa 
+                ideia é que o Boca a Boca Virtual fortalecer a economia Local 
+                frente a pandemia  Covid-19. 
             </p>
-            <h3 style="color: #c0262e;">Como cadastrar seu negócio?</h3>
             <p style="text-align: justify;">
-                Primeiramente, sua cidade deve aparecer no menu de cidades que está 
-                na Página Inicial (se não estiver, <a><u>clique aqui</u></a>). Se ela 
-                ali estiver, quer dizer que já existe um Curador para sua cidade. Isso 
+                O Boca a Boca Virtual é uma aplicação na qual pequenos 
+                empreendedores podem divulgar seus serviços e produtos de uma 
+                maneira simples e rápida. Por meio do Boca a Boca, esses 
+                empreendedores apresentam as informações referentes aos seus 
+                serviços e produtos de forma prática, tais como telefone, 
+                formas de pagamento, forma de entrega, etc., sem a necessidade 
+                de realizar investimentos financeiros, tão pouco investimento 
+                com a criação de páginas na Web ou no Facebook. Além disso, o 
+                Boca a Boca Virtual permite que aos consumidores de produtos e 
+                serviços divulgados possam tecer comentários, ajudando a dar 
+                credibilidade aos empreendedores.
+            </p>
+        </div>
+        <div id="cadastroCidade"></div>
+        <div class="column">
+            <h4 style="color: #c0262e;">Como cadastrar seu negócio?</h4>
+            <p style="text-align: justify;">
+                Primeiramente, sua cidade deve aparecer na lista de cidades e curadores
+                (se não estiver, <a class="modal-trigger" href="#modal1">clique aqui</a>). Se ela ali estiver, 
+                quer dizer que já existe um Curador para sua cidade. Isso 
                 significa que existe um responsável por validar as informações do seu
                 negócio, evitando que conteúdos mal intencionados poluam a plataforma. 
             </p>
+
+             <!-- Modal Trigger -->
+            
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                <h4>Minha cidade não está cadastrada</h4>
+                <p style="text-align: justify;">
+                    Se sua cidade não está cadastrada na nossa plataforma, mande um
+                    email para <u>email@gmail.com</u>. Vamos analisar o cadastro de sua cidade
+                    e procurar um curador para sua cidade.
+                </p>
+                </div>
+                <div class="modal-footer">
+                <a href="inicio#cadastroCidade" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+                </div>
+            </div>
+          
+
             <p style="text-align: justify;">
-                Enfim, se já existe um Curador para sua cidade, basta 
-                <a><u>clicar aqui</u></a> para que você seja redirecionado para
-                um formulário de cadastro. Este será enviado para análise do Curador,
+                Enfim, se já existe um Curador para sua cidade, basta <a href="inicio#formularioCadastro">
+                <u>clicar aqui</u></a> e acessar o link pro formulário de cadastro.
+                Este será enviado para análise do Curador,
                 que, dentro de 24 horas, dará um retorno para você dizendo se a sua
                 solicitação foi aprovada, ou não. Em caso positivo, a divulgação do seu
-                negócio já estará em nossa plataforma. Do contrário, possivelmente seu
-                negócio infringiu alguma das regulamentações previstas <a><u>aqui</u></a>.
+                negócio já estará em nossa plataforma. Do contrário, possivelmente 
+                alguma informação do seu negócio está ausente ou informada de forma 
+                incorreta.
             </p>
-        </div>
-        <div class="column">
-            <h3 style="color: #c0262e;">Até quando o Marketplace estará disponível?</h3>
+            <h4 style="color: #c0262e;" >Até quando vai funcionar?</h4>
             <p style="text-align: justify;">
-                O objetivo do Marketplace é minimizar os impactos econômicos que o 
+                O objetivo do Boca a Boca Virtual é minimizar os impactos econômicos que o 
                 combate ao Covid-19 traz, sem visar o lucro, mas o bem comum.
                 Nesse sentido, a plataforma seguirá no ar enquanto o combate a
                 esse vírus continuar e as medidas de isolamento social ainda
@@ -69,10 +108,171 @@
                 compartilhadas pelo 
                 <a target="_blank" href="https://saude.gov.br/"><u>Ministério da Saúde</u></a>.
             </p>
-            <a class="twitter-timeline" data-width="550" data-height="500" data-theme="dark" href="https://twitter.com/minsaude?ref_src=twsrc%5Etfw">Tweets by minsaude</a> 
+        <a class="twitter-timeline" data-width="350" data-height="250" data-theme="dark" href="https://twitter.com/minsaude?ref_src=twsrc%5Etfw">Tweets by minsaude</a> 
         </div>
     
     </div> 
+    
+    <div class="row container">
+        <h4 style="color: #c0262e;">Quais são as cidades cadastradas?</h4>
+        <p style="text-align: justify;">
+            As cidades são cadastradas segundo a demanda de solicitações 
+            para cadastrar estabelecimentos e serviços prestados por autônomos. As
+            cidades já cadastradas, bem como o contato de seus curadores está disponível
+            logo abaixo.
+        </p>
+        <div id = "curadores"></div>
+        <ul class="collapsible" >
+            <li *ngFor="let curador of this.curadores">
+                <div class="collapsible-header">
+                  <i class="material-icons">location_city</i>
+                  {{curador.city}} - {{curador.state_initials}}
+                </div>
+                <div class="collapsible-body">
+                    <div>
+                        <h6>Nome do Responsável: {{curador.first_name}} {{curador.last_name}}</h6>
+                        <h6>Email para contato: {{curador.email}}</h6>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row container">
+        <h4 style="color: #c0262e;">Formulário de Cadastro</h4>
+        <p style="text-align: justify;">
+            Se a sua cidade já está cadastrada e você quer divulgar seu negócio 
+            ou serviço, está na hora de cadastrá-lo. Para isso preencha o formulário
+            abaixo.
+
+        </p>
+        <div id = "formularioCadastro"></div>
+        <!-- <ul class="collapsible" >
+            <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">location_city</i>
+                  Formulário de Cadastro
+                </div>
+                <div class="collapsible-body">
+                    <div class="row">
+                        <form class="col s12" enctype="multipart/form-data">
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <input [(ngModel)]= "formularioCadastro.first_name" [ngModelOptions]="{standalone: true}" id="first_name" type="text" class="validate"> 
+                              <label for="first_name">Nome</label>
+                            </div>
+                            <div class="input-field col s6">
+                              <input [(ngModel)]= "formularioCadastro.last_name" [ngModelOptions]="{standalone: true}" id="last_name" type="text" class="validate">
+                              <label for="last_name">Sobrenome</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input [(ngModel)]= "formularioCadastro.email" [ngModelOptions]="{standalone: true}" id="email" type="email" class="validate">
+                              <label for="email">Email</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                                <input [(ngModel)]= "formularioCadastro.name" [ngModelOptions]="{standalone: true}" id="name_business" type="text" class="validate">
+                                <label for="name_business">Nome do seu negócio/serviço</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <input [(ngModel)]= "formularioCadastro.cell_phone" [ngModelOptions]="{standalone: true}" id="cell_phone" type="text" class="validate"> 
+                              <label for="cell_phone">Celular</label>
+                            </div>
+                            <div class="input-field col s6">
+                              <input [(ngModel)]= "formularioCadastro.telephone" [ngModelOptions]="{standalone: true}" id="telephone" type="text" class="validate">
+                              <label for="telephone">Telefone Fixo</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <label>Adicione palavras-chaves que descrevam bem o seu negócio/serviço pressionando o Enter</label>
+                            <div id ="tags" class="chips chips-placeholder col s12"></div>
+                          </div>
+                          <div class="row">
+                            <div class="col s4">
+                                <label>Seu negócio/serviço aceita Delivery?</label>
+                                <p>
+                                    <label>
+                                      <input [(ngModel)]="formularioCadastro.delivery" [ngModelOptions]="{standalone: true}" [value]="true" class="with-gap" name="group1" type="radio" name="switch_Activate"/>
+                                      <span>Sim</span>
+                                    </label>
+                                  </p>
+                                  <p>
+                                    <label>
+                                        <input [(ngModel)]="formularioCadastro.delivery" [ngModelOptions]="{standalone: true}" [value]="false" class="with-gap" name="group1" type="radio" name="switch_Activate"/>
+                                        <span>Não</span>
+                                    </label>
+                                  </p>
+                            </div>
+                            <div class="col s4">
+                                <label>Seu negócio/serviço aceita Retirada no Local?</label>
+                                <p>
+                                    <label>
+                                      <input [(ngModel)]="formularioCadastro.withdraw" [ngModelOptions]="{standalone: true}" [value]="true" class="with-gap" name="group2" type="radio" name="switch_Activate2"/>
+                                      <span>Sim</span>
+                                    </label>
+                                  </p>
+                                  <p>
+                                    <label>
+                                        <input [(ngModel)]="formularioCadastro.withdraw" [ngModelOptions]="{standalone: true}" [value]="false" class="with-gap" name="group2" type="radio" name="switch_Activate2"/>
+                                        <span>Não</span>
+                                    </label>
+                                  </p>
+                            </div>
+                            <div class="input-field col s4">
+                                <input [(ngModel)]= "formularioCadastro.time" [ngModelOptions]="{standalone: true}" id="time" type="text" class="validate">
+                                <label for="time">Tempo Médio de Entrega/Atendimento (em MINUTOS)</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                                <textarea [(ngModel)]= "formularioCadastro.description" [ngModelOptions]="{standalone: true}" id="description" class="materialize-textarea"></textarea>
+                                <label for="description">Dê uma descrição para o seu negócio ou serviço</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="file-field input-field col s6">
+                                <div class="btn">
+                                  <span>Escolha uma Logo</span>
+                                  <input [(ngModel)]= "formularioCadastro.logo" [ngModelOptions]="{standalone: true}" type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                  <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                            <div class="file-field input-field col s6">
+                                <div class="btn">
+                                  <span>Escolha um Banner</span>
+                                  <input [(ngModel)]= "formularioCadastro.banner" [ngModelOptions]="{standalone: true}" type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                  <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="file-field input-field col s12">
+                                <div class="btn">
+                                  <span>Imagens dos seus produtos</span>
+                                  <input [(ngModel)]= "formularioCadastro.images" [ngModelOptions]="{standalone: true}" type="file" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                  <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                </div>
+                              </div>
+                          </div> 
+                          <a class="waves-effect waves-light btn" (click)="salvar()">button</a>
+                        </form>
+                      </div>
+                </div>
+            </li>
+        </ul> -->
+
+    </div>
 </div>
 
 

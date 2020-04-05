@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Estabelecimentos } from './anuncios-cidade/anuncios-cidade.component';
+import { Estabelecimento } from './inicio/inicio.component';
 // import { Estabelecimento } from './anuncio/anuncio.component';
 
 @Injectable({
@@ -12,14 +12,14 @@ export class EstabelecimentoService {
   constructor(private http: HttpClient) { }
 
   // recupera um estabelecimento especifico
-  getEstabelecimento(idEstabelecimento: string): Observable<Estabelecimentos>{
+  getEstabelecimento(idEstabelecimento: number): Observable<Estabelecimento>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Estabelecimentos>('http://localhost:8000/businesses/' + idEstabelecimento + '/');
+    return this.http.get<Estabelecimento>('http://200.17.66.215/api/businesses/' + idEstabelecimento + "/");
   }
 
   // recupera todos os estabelecimentos de uma cidade
-  getEstabelecimentos(idCidade: string): Observable<Estabelecimentos[]>{
+  getEstabelecimentos(idCidade: number): Observable<Estabelecimento[]>{
     // retorna as cidades que eu tenho nessa url
-    return this.http.get<Estabelecimentos[]>('http://localhost:8000/businesses/?city=' + idCidade);
+    return this.http.get<Estabelecimento[]>('http://200.17.66.215/api/businesses/?city=' + idCidade );
   }
 }

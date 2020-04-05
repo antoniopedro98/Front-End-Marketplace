@@ -7,17 +7,17 @@
 <h4 style="text-align: center;">Você está em <u><b>{{cidade.name}}</b></u></h4>
 <div class="section white">
     <div class="row container">
-        <ul class="tabs tabs-fixed-width" >
+        <ul class="tabs tabs-fixed-width z-depth-1" >
             <li class="tab"><a (click)="atualizar_tabela('Geral')">Geral</a></li>
             <li class="tab" *ngFor="let categoria of categorias">
                 <a (click)="atualizar_tabela(categoria.id)">{{categoria.name}}</a>
             </li>
-          </ul>
+        </ul>
         <table class=" highlight">
             <thead>
               <tr>
                   <th>Nome</th>
-                  <th>Local</th>
+                  <th>Bairro</th>
               </tr>
             </thead>
             <tbody >

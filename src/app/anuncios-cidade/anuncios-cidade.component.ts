@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { CidadeService } from '../cidade.service';
 import { EstabelecimentoService } from '../estabelecimento.service';
 import { CategoriasService } from '../categorias.service';
-import { Cidades } from '../inicio/inicio.component';
+import { Cidades, Estabelecimento } from '../inicio/inicio.component';
 
 declare var $: any;
 @Component({
@@ -20,7 +20,7 @@ export class AnunciosCidadeComponent implements OnInit {
 
   public cidade: Cidades;
 
-  public todos_estabelecimentos:  Estabelecimentos[] = new Array<Estabelecimentos>();
+  public todos_estabelecimentos:  Estabelecimento[] = new Array<Estabelecimento>();
 
   public categorias: Categorias[] = new Array<Categorias>();
 
@@ -74,28 +74,29 @@ export class AnunciosCidadeComponent implements OnInit {
   }
 
   // atualizo a tabela de acordo com os estabelecimentos que correspondem a categoria clicada
-  public atualizar_tabela(idCategoria: String): void{
+  public atualizar_tabela(idCategoria: any): void{
     this.busca_estabelecimento = [];
+    console.log(idCategoria)
 
     // se a categoria for 'geral', mostro todos os estabelecimentos da cidade
     if(idCategoria=="Geral"){
       this.busca_estabelecimento = this.todos_estabelecimentos;
+      // console.log(this.busca_estabelecimento)
     }else{
       // se não, eu filtro
-      for(var i in this.categorias){
-        // mesmo id de categoria
-        if(idCategoria==this.todos_estabelecimentos[i].category){
+      for(var i in this.todos_estabelecimentos){
+        if(this.todos_estabelecimentos[i].category == idCategoria){
           this.busca_estabelecimento.push(this.todos_estabelecimentos[i])
         }
       }
+      
     }
-    // console.log(this.busca_estabelecimento)
   }
 }
 
 // classe das categorias disponíveis pra filtragem
 export class Categorias{
-  id: string;
+  id: number;
   name: string;
 
   constructor(){
@@ -103,35 +104,3 @@ export class Categorias{
   }
 }
 
-// classe para os estabelecimentos
-export class Estabelecimentos{
-  id: string;
-  delivery: boolean;
-  withdraw: boolean;
-  name: string;
-  telephone: string;
-  cell_phone: string;
-  tags: null;
-  time: number;
-  description: string;
-  city: string;
-  logo: string;
-  banner: string;
-  neighborhood: string;
-  category: string;
-
-  constructor(){
-    this.delivery = false;
-    this.withdraw = false;
-    this.name = "";
-    this.telephone = "";
-    this.cell_phone = "";
-    this.tags = null;
-    this.time = 0;
-    this.description = "";
-    this.logo = "";
-    this.banner = "";
-    this.neighborhood = "";
-    this.category = "";
-  }
-}

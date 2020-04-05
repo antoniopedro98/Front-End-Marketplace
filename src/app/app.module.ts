@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { AnunciosCidadeComponent } from './anuncios-cidade/anuncios-cidade.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AnuncioComponent } from './anuncio/anuncio.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],
