@@ -7,13 +7,15 @@ import { InicioComponent } from './inicio/inicio.component';
 import { AnunciosCidadeComponent } from './anuncios-cidade/anuncios-cidade.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { FormsModule } from '@angular/forms';
+import { AnuncioPreviewComponent } from './anuncio-preview/anuncio-preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     AnunciosCidadeComponent,
-    AnuncioComponent
+    AnuncioComponent,
+    AnuncioPreviewComponent
   ],
   imports: [
     BrowserModule,

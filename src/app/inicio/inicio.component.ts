@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CidadeService } from '../cidade.service';
 import { EstadosService } from '../estados.service';
 import { CuradoresService } from '../curadores.service';
-import { NovoService } from '../novo.service';
 import { PerfilCuradorService } from '../perfil-curador.service';
 import { ReadKeyExpr } from '@angular/compiler';
 
@@ -15,14 +14,8 @@ declare var $: any;
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
-
-  // importo os serviços (fazem requisição no servidor)
-  constructor(private service_city: CidadeService,
-              private service_state: EstadosService,
-              private service_curator: CuradoresService,
-              private service_novo: NovoService,
-              private service_perfil_curator: PerfilCuradorService) { }
-  
+  // variavel pra validar se todos os services já estão disponíveis
+  public contador: boolean = true;
   // guardo a lista de cidades
   public cidades:  Cidades[] = new Array<Cidades>();
   // guardo os estados cadastrados no servidor
@@ -31,14 +24,18 @@ export class InicioComponent implements OnInit {
   public curadores: Curadores[] = new Array<Curadores>();
   // guardo o perfil de todos os curadores
   public perfis: PerfilCurador[] = new Array<PerfilCurador>();
-  public formularioCadastro: NovoEstabelecimento;
 
+  // importo os serviços (fazem requisição no servidor)
+  constructor(private service_city: CidadeService,
+              private service_state: EstadosService,
+              private service_curator: CuradoresService,
+              private service_perfil_curator: PerfilCuradorService) { 
+  }
+  
   ngOnInit(): void {
-    // crio uma variavel pra armazenar os dados do cadastro
-    this.formularioCadastro = new NovoEstabelecimento();
-    // função pra executar os efeitos/animações do materialize.css
-    this.jquery_code();
-    
+    // // crio uma variavel pra armazenar os dados do cadastro
+    // this.formularioCadastro = new NovoEstabelecimento();
+
     // recupero todos os estados do servidor
     this.service_state.getEstados().subscribe(estados => {
       this.estados = estados;
@@ -47,63 +44,88 @@ export class InicioComponent implements OnInit {
 
     // recupero todas as cidades do servidor
     this.service_city.getCidades().subscribe(cidades => {
-      this.cidades = cidades;
+      this.cidades = cidades;  
       // console.log(this.cidades);
-      // vou atualizar o campo estado da requisição nas cidades
-      for(var i in this.cidades){
-        for(var j in this.estados){
-          // como a cidade so armazena um id do estado
-          // eu faço a substituição do id do estado, pela inicial do estado
-          if(this.cidades[i].state == this.estados[j].id){
-            this.cidades[i].state_initials = this.estados[j].initials;
-            break;
-          }
-        }
-      }
     });
 
+    // recupero todos os perfis de curadores (cidade que um curador esta responsavel)
     this.service_perfil_curator.getPerfisCuradores().subscribe(perfis => {
       this.perfis = perfis;
       // console.log(this.perfis);
     });
 
-    // recupero os curadores
+    // recupero os curadores (nome e email e o id da cidade)
     this.service_curator.getCuradores().subscribe(curadores => {
       this.curadores = curadores;
-      var idCidade: any;
-
-      for(var i in this.curadores){
-        for(var j in this.perfis){
-          if(this.curadores[i].id == this.perfis[j].user){
-            for(var k in this.cidades){
-              // achei a cidade do user
-              if(this.cidades[k].id == this.perfis[j].city){
-                this.curadores[i].city = this.cidades[k].name;
-                this.curadores[i].state_initials = this.cidades[k].state_initials;
-                break;
-              }
-            }
-            break;
-          }
-        }
-      }
       // console.log(this.curadores);
     });
 
-    
+    // função pra executar os efeitos/animações do materialize.css
+    this.jquery_code();
   }
-
+  
   // carrega os tweets do embed do twitter
   ngAfterViewInit(): void {
     // @ts-ignore
     twttr.widgets.load();
   }
 
+  // gambiarra suprema
+  match(valor: boolean){
+    // console.log("valor>" + valor);
+    // o valor retornado é igual true quer dizer que nem todos os arrays foram carregados 
+    if(valor == true){
+      if((this.cidades.length == 0) || (this.curadores.length == 0) ||
+         (this.estados.length == 0) || (this.perfis.length ==0)) {
+        // console.log("Não carregou tudo");
+      }else{
+        // se forem foram carregados, setamos a variavel que tem correspondencia com match no
+        // html é setada false
+        // console.log("Carregou tudo");
+        // console.log(this.cidades);
+        // console.log(this.estados);
+        // console.log(this.curadores);
+        // console.log(this.perfis);
+        // faço o match do estado da cidade
+        for(var i in this.cidades){
+          for(var j in this.estados){
+            // como a cidade so armazena um id do estado
+            // eu faço a substituição do id do estado, pela inicial do estado
+            if(this.cidades[i].state == this.estados[j].id){
+              this.cidades[i].state_initials = this.estados[j].initials;
+              // console.log("Iniciais " + this.cidades[i].state_initials)
+              break;
+            }
+          }
+        }
+
+        // faço o match da cidade pro usuario
+        for(var i in this.curadores){
+          for(var j in this.perfis){
+            // achamos o perfil de um curador
+            if(this.curadores[i].id == this.perfis[j].user){
+              for(var k in this.cidades){
+                // achei a cidade do curador
+                if(this.cidades[k].id == this.perfis[j].city){
+                  this.curadores[i].city = this.cidades[k].name;
+                  this.curadores[i].state_initials = this.cidades[k].state_initials;
+                  break;
+                }
+              }
+              break;
+            }
+          }
+        }
+        // nao vai mais entrar nessa função como um todo, pois essa variavel é a que chega
+        // toda hora pelo parâmetro
+        this.contador = false;
+      }
+    }
+  }
   jquery_code(){
     $(document).ready(function(){
       $('.parallax').parallax();
       $('.dropdown-trigger').dropdown({
-        'hover': true,
         'coverTrigger': false,
         'alignment': 'top'
       });    
@@ -116,15 +138,6 @@ export class InicioComponent implements OnInit {
 
     });
   }
-
-  // salvar(){
-  //   console.log(this.formularioCadastro);
-  //   this.service_novo.adicionar(this.formularioCadastro).subscribe(
-  //   //   res => {
-  //   //   this.formularioCadastro.id = res.insertId;
-  //   // }
-  //   );
-  // }
 }
 
 // classe Cidades
@@ -189,6 +202,8 @@ export class Estabelecimento{
   banner: string;
   neighborhood: string;
   category: number;
+  temp: boolean;
+  approved: boolean;
 
   constructor(){
     this.delivery = false;
@@ -201,48 +216,11 @@ export class Estabelecimento{
     this.logo = "";
     this.banner = "";
     this.neighborhood = "";
+    this.temp = true;
+    this.approved = false;
   }
 }
 
-//classe pra novos estabelecimentos
-export class NovoEstabelecimento{
-  id: number;
-  // first_name: string;
-  // last_name: string;
-  // email: string;
-  // name: string;
-  // telephone: string;
-  // cell_phone: string;
-  // tags: string[];
-  // delivery: boolean;
-  // withdraw: boolean;
-  // time: number;
-  // description: string;
-  // city: number;
-  logo: File;
-  banner: File;
-  // images: File[];
-  // neighborhood: string;
-  // category: number;
-
-  constructor(){
-    // this.first_name = "";
-    // this.last_name = "";
-    // this.email = "";
-    // this.delivery = false;
-    // this.withdraw = false;
-    // this.name = "";
-    // this.telephone = "";
-    // this.cell_phone = "";
-    // this.tags = new Array<string>();
-    // this.time = 0;
-    // this.description = "";
-    this.logo = null;
-    this.banner = null;
-    // this.images = new Array<File>();
-    // this.neighborhood = "";
-  }
-}
 
 export class PerfilCurador{
   user:number;

@@ -10,8 +10,8 @@ export class TagService {
 
   constructor(private http: HttpClient) { }
 
-  // recupera um estabelecimento especifico
+  // recupera as tags de um estabelecimento especifico
   getTags(idEstabelecimento: number): Observable<Tags[]>{
-    // retorna as cidades que eu tenho nessa url
     return this.http.get<Tags[]>('http://200.17.66.215/back/api/tags/?business=' + idEstabelecimento);
-  }}
+  }
+}

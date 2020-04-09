@@ -61,6 +61,7 @@ export class AnunciosCidadeComponent implements OnInit {
     this.jquery_code();
   }
 
+  // necessário quando usamos um subscription
   ngOnDestroy() {
     this.idSubscription.unsubscribe();
   }
@@ -69,6 +70,9 @@ export class AnunciosCidadeComponent implements OnInit {
   jquery_code(){
     $(document).ready(function(){
       $('.parallax').parallax();   
+      $('.carousel.carousel-slider').carousel({
+        fullWidth: true
+      });
       $('.tabs').tabs();
     });
   }

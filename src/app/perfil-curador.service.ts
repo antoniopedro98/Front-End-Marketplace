@@ -10,9 +10,8 @@ export class PerfilCuradorService {
 
   constructor(private http: HttpClient) { }
 
-  // recupera todos os perfis
+  // recupera todos os perfis de curadores (que tem info das cidades que eles são reponsaveis)
   getPerfisCuradores(): Observable<PerfilCurador[]>{
-    // retorna as cidades que eu tenho nessa url
     return this.http.get<PerfilCurador[]>('http://200.17.66.215/back/api/profiles/');
   }
 }

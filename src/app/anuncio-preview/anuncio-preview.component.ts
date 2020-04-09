@@ -1,29 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import { Estabelecimento } from '../inicio/inicio.component';
+import { ActivatedRoute } from '@angular/router';
 import { EstabelecimentoService } from '../estabelecimento.service';
 import { ImagensEstabelcimentoService } from '../imagens-estabelcimento.service';
-import { Estabelecimento } from '../inicio/inicio.component';
 import { TagService } from '../tag.service';
+import { Imagens, Tags } from '../anuncio/anuncio.component';
 
-// pro jquery
 declare var $: any;
 
 @Component({
-  selector: 'app-anuncio',
-  templateUrl: './anuncio.component.html',
-  styleUrls: ['./anuncio.component.scss']
+  selector: 'app-anuncio-preview',
+  templateUrl: './anuncio-preview.component.html',
+  styleUrls: ['./anuncio-preview.component.scss']
 })
-export class AnuncioComponent implements OnInit {
-  
+export class AnuncioPreviewComponent implements OnInit {
+
   public idCidade: any;
   public idEstabelecimento: any;
   
   private idSubscription: Subscription;
-
-  public comentarios: SafeHtml;
-
 
   public estabelecimento: Estabelecimento;
   public imagens: Imagens[] = new Array<Imagens>();
@@ -31,7 +27,7 @@ export class AnuncioComponent implements OnInit {
 
   // importo os serviços que fazem requisição no servidor, o route pra recuperar
   // o que vem na url, o DOM pra poder renderizar os comentários do facebook
-  constructor(public route: ActivatedRoute, private sanitizer: DomSanitizer, public router: Router,
+  constructor(public route: ActivatedRoute,
               private service_business: EstabelecimentoService,
               private service_images: ImagensEstabelcimentoService,
               private service_tags: TagService) { }
@@ -51,14 +47,7 @@ export class AnuncioComponent implements OnInit {
     // recupera as informações do estabelecimento informado
     this.service_business.getEstabelecimento(this.idEstabelecimento).subscribe(estabelecimento=> {
       this.estabelecimento = estabelecimento;
-      console.log(this.estabelecimento);
-
-      // caso o estabelecimento retornado pelo id seja de um preview ou de um negocio nao aprovado
-      if((this.estabelecimento.temp == true) || (this.estabelecimento.approved == false)){
-        // informamos que não é possível ver, e voltamos pro id da cidade especificada
-        alert("Não é possível visualizar este anúncio!")
-        this.router.navigateByUrl("anuncios/cidades/" + this.estabelecimento.city);
-      }
+      // console.log(this.estabelecimento);
     });
 
     // recupera as tags do estabelecimento informado
@@ -73,12 +62,6 @@ export class AnuncioComponent implements OnInit {
       // console.log(this.imagens);
     });
 
-    // alerta de gambiarra
-    // renderiza os comentários do facebook pra url deste anuncio
-    this.comentarios = this.sanitizer.bypassSecurityTrustHtml(
-    "<div class='fb-comments' data-href='" + "http://localhost:4200/anuncios/cidades/" + this.idCidade + "/" +
-     this.idEstabelecimento + "' data-width='100%' data-numposts='10'></div>"
-    );
     // pro materialize.css
     this.jquery_code();
   }
@@ -90,34 +73,11 @@ export class AnuncioComponent implements OnInit {
   // materialize.css
   jquery_code(){
     $(document).ready(function(){
-      $('.parallax').parallax();
       $('.materialboxed').materialbox();
       $('.modal').modal();
       $('.carousel.carousel-slider').carousel({
         fullWidth: true
       });
     });
-  }
-}
-
-// classe pra recuperar as imagens de um estabelecimento
-export class Imagens{
-  id: number;
-  business: string;
-  img: string;
-
-  constructor(){
-    this.img = "";
-  }
-}
-
-// classe para tag de um negocio
-export class Tags{
-  id: number;
-  business: number;
-  name: string;
-
-  constructor(){
-    this.name = "";
   }
 }

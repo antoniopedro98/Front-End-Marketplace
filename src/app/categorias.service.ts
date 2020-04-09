@@ -10,9 +10,8 @@ export class CategoriasService {
 
   constructor(private http: HttpClient) { }
 
-  // recupera todas as categorias
+  // recupera todas as categorias de negocios/serviços cadastradas
   getCategorias(): Observable<Categorias[]>{
-    // retorna as cidades que eu tenho nessa url
     return this.http.get<Categorias[]>('http://200.17.66.215/back/api/categories/');
   }
 }

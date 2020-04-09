@@ -1,19 +1,21 @@
-<div class="parallax-container">
-    <div class="parallax" >
-        <img src="{{cidade.image}}" class="responsive-img">
-    </div>
+<!-- responsividade da imagem no carossel é melhor -->
+<div class="carousel carousel-slider">
+    <img class="carousel-item" src="{{cidade.image}}">
 </div>
 
 <h4 style="text-align: center;">Você está em <u><b>{{cidade.name}}</b></u></h4>
 <div class="section white">
-    <div class="row container">
+    <div class="row container"style="text-align: center;">
+
+        <label><b>Arraste para os lados se estiver em celulares ou tablets.</b></label>
+
         <ul class="tabs tabs-fixed-width z-depth-1" >
             <li class="tab"><a (click)="atualizar_tabela('Geral')">Geral</a></li>
             <li class="tab" *ngFor="let categoria of categorias">
                 <a (click)="atualizar_tabela(categoria.id)">{{categoria.name}}</a>
             </li>
         </ul>
-        <table class=" highlight">
+        <table class=" highlight ">
             <thead>
               <tr>
                   <th>Nome</th>
@@ -23,10 +25,10 @@
             <tbody >
                 <tr *ngFor="let estabelecimento of busca_estabelecimento">
                     <td>
-                        <img src="{{estabelecimento.logo}}" class="responsive-img circle" style="width: 80px; height: 80px;">
-                        <a href='/anuncios/cidades/{{idCidade}}/{{estabelecimento.id}}'><h4 style="padding-left: 100px; color: #c0262e;">{{estabelecimento.name}}</h4></a>
+                        <img src="{{estabelecimento.logo}}" class="responsive-img circle z-depth-3" style="width: 50px; height: 50px;">
+                        <a href='/anuncios/cidades/{{idCidade}}/{{estabelecimento.id}}'><h6 style="padding-left: 70px; color: #c0262e;">{{estabelecimento.name}}</h6></a>
                     </td>
-                    <td>{{estabelecimento.neighborhood}}</td>
+                    <td><h6 style="color: #c0262e;">{{estabelecimento.neighborhood}}</h6></td>
                 </tr>
             </tbody>
           </table>

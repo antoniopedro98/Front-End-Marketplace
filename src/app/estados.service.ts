@@ -10,9 +10,8 @@ export class EstadosService {
 
   constructor(private http: HttpClient) { }
 
-  // recupera todos os estados
+  // recupera todos os estados cadastrados
   getEstados(): Observable<Estados[]>{
-    // retorna as cidades que eu tenho nessa url
     return this.http.get<Estados[]>('http://200.17.66.215/back/api/states/');
   }
 }

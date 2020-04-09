@@ -15,13 +15,11 @@ export class CidadeService {
 
   // recupera uma cidade especifica
   getCidade(idCidade: number): Observable<Cidades>{
-    // retorna as cidades que eu tenho nessa url
     return this.http.get<Cidades>('http://200.17.66.215/back/api/cities/' + idCidade + "/");
   }
 
-  // recupera todas as cidades
+  // recupera todas as cidades cadastradas
   getCidades(): Observable<Cidades[]>{
-    // retorna as cidades que eu tenho nessa url
     return this.http.get<Cidades[]>('http://200.17.66.215/back/api/cities/');
   }
 }

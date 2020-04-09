@@ -1,8 +1,12 @@
 <div class="carousel carousel-slider">
     <img class="carousel-item" src="{{estabelecimento.banner}}">
 </div>
-
-<div class="section white">
+<!-- style="background-image: url(assets/principais/marcadagua.png); background-repeat: repeat; background-size: 300px;" -->
+<div class="section white" >
+    <div class="row container center">
+        <label>Essa mensagem não aparecerá no anúncio original.</label>
+        <h3 style="color:#c0262e;">Tela de Visualização Prévia!</h3>
+    </div>
     <div class="row container">
         <img src="{{estabelecimento.logo}}" class="circle responsive-img z-depth-3" style="height: 250px; width: 270px;"> 
         <h3 style="color:#c0262e;">{{estabelecimento.name}}</h3>
@@ -10,7 +14,7 @@
             {{tag.name}}
         </div>
         <div>
-            <i class="material-icons" style="color:#c0262e; font-size: 5vmin;">phone</i>
+            <i class=" material-icons" style="color:#c0262e; font-size: 5vmin;">phone</i>
             <h6 style="color:#c0262e; font-size: 5vmin;">{{estabelecimento.cell_phone}} | {{estabelecimento.telephone}}</h6>
         </div>
         <br>
@@ -69,9 +73,9 @@
             </div>
         </div>
     </div>
-    <div class="row container">
-        <h4 style="color:#c0262e;">Boca a Boca</h4>
-        <!-- incluo os comentários do facebook -->
-        <div [innerHtml]="comentarios"></div>
+    <div class="row container center">
+        <label>Essa mensagem não aparecerá no anúncio original.</label>
+        <h3 style="color:#c0262e;">Tela de Visualização Prévia!</h3>
     </div>
+    
 </div>

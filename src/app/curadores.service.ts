@@ -10,9 +10,8 @@ export class CuradoresService {
 
   constructor(private http: HttpClient) { }
 
-  // recupera todos os curadores
+  // recupera todos os curadores (nome e email)
   getCuradores(): Observable<Curadores[]>{
-    // retorna os curadores que eu tenho nessa url
     return this.http.get<Curadores[]>('http://200.17.66.215/back/api/users/');
   }
 }
